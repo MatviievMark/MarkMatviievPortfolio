@@ -65,11 +65,11 @@
                         <span class="home__profession">Full Stack Developer</span>
 
                         <div class="home__social">
-                            <a href="#" class="home__social-link"><i class="bx bxl-linkedin"></i></a>
-                            <a href="#" class="home__social-link"><i class="bx bxl-github"></i></a>
+                            <a href="https://www.linkedin.com/in/matviievmark/" class="home__social-link"><i class="bx bxl-linkedin"></i></a>
+                            <a href="https://github.com/MatviievMark" class="home__social-link"><i class="bx bxl-github"></i></a>
                         </div>
 
-                        <a href="#" class="button home__button">Download Resume</a>
+                        <a href="resume.pdf" class="button home__button" download="Mark_Matviiev_Resume.docx">Download Resume</a>
                     </div>
                 </div>
             </section>
@@ -292,7 +292,7 @@
                 </div>
             </section>
 
-            <!--===== WORKS =====-->
+            <!--===== WORKS NOT READY YET =====-->
             <!-- <section class="works section" id="works">
                 <span class="section-subtitle">My Portfolio</span>
                 <h2 class="section-title">Recent Works</h2>
@@ -360,18 +360,21 @@
                 <span class="section-subtitle">Contact Me</span>
                 <h2 class="section-title">Get In Touch</h2>
                 <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact__form">
+                        <input type="hidden" name="access_key" value="f941dd57-88c3-40ae-b7a1-89c135efdc82">
+                        
                         <div class="contact__inputs">
-                            <input type="text" placeholder="Name" class="contact__input">
-                            <input type="email" placeholder="Email" class="contact__input">
+                            <input type="text" name="name" placeholder="Name" class="contact__input" required>
+                            <input type="email" name="email" placeholder="Email" class="contact__input" required>
                         </div>
-
-                        <input type="text" placeholder="Project" class="contact__input">
-
-                        <textarea name="" id="" cols="0" rows="10" placeholder="Message" class="contact__input"></textarea>
-
+                    
+                        <input type="text" name="project" placeholder="Project" class="contact__input">
+                    
+                        <textarea name="message" placeholder="Message" class="contact__input" required cols="0" rows="10"></textarea>
+                    
                         <input type="submit" value="Send Message" class="button contact__button">
                     </form>
+                    
 
                     <div>
                         <div class="contact__info">
