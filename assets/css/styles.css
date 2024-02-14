@@ -284,6 +284,9 @@ img{
 /* ===== ABOUT =====*/
 .about__container{
   row-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
 }
 
 .about__data{
@@ -313,6 +316,7 @@ img{
 .about__information-data{
   display: flex;
   align-items: center;
+  justify-content: start;
   padding-left: 1.5rem;
   margin-bottom: var(--mb-3);
 }
@@ -334,6 +338,9 @@ img{
 
 /* ===== SKILLS =====*/
 .skills__container{
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
   row-gap: 2rem;
 }
 
@@ -609,7 +616,6 @@ img{
 
 .contact__text{
   display: block;
-  padding-left: 1rem;
 }
 
 /* ===== FOOTER =====*/
@@ -626,6 +632,7 @@ img{
 
 .footer__description{
   margin-bottom: var(--mb-2);
+  padding: 3rem;
 }
 
 .footer__social{
