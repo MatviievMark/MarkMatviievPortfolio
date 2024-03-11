@@ -1,3 +1,21 @@
+const lenis = new Lenis({
+  lerp: 0.1,
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  infinite: false,
+})
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+
 /*===== MENU SHOW AND HIDDEN =====*/
 const navMenu = document.getElementById('nav-menu');
 const toggleMenu = document.getElementById('nav-toggle');
@@ -38,14 +56,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateActiveNavLink() {
         let index = sections.length;
 
-        while(--index && window.scrollY + 50 < sections[index].offsetTop) {}
+        while (--index && lenis.scroll + 50 < sections[index].offsetTop) {}
 
         navLinks.forEach((link) => link.classList.remove('active'));
         navLinks[index].classList.add('active');
+        console.log("Scrolling to section: ", index);
     }
 
     // Update active nav link on scroll
-    window.addEventListener('scroll', updateActiveNavLink);
+    lenis.on('scroll', updateActiveNavLink);
 
     // Initial call to set the active nav link when the page is first loaded
     updateActiveNavLink();
