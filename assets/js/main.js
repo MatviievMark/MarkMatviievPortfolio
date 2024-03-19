@@ -5,9 +5,6 @@ const lenis = new Lenis({
   infinite: false,
 })
 
-lenis.on('scroll', (e) => {
-  console.log(e)
-})
 
 function raf(time) {
   lenis.raf(time)
@@ -48,24 +45,36 @@ navLink.forEach(n => n.addEventListener('click', linkAction));
 /*===== SCROLL SECTIONS ACTIVE LINK =====*/
 // Wait until the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function () {
-    // Get all section elements and nav links
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav__link');
+  // Get all section elements and nav links
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav__link');
+  console.log(sections, navLinks);
 
-    // Function to update the active nav link
-    function updateActiveNavLink() {
-        let index = sections.length;
+  // Function to scroll to the corresponding section using Lenis
+  function scrollToSection(event) {
+    event.preventDefault();
+    const targetId = event.target.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    lenis.scrollTo(targetSection, { duration: 0 });
+  }
 
-        while (--index && lenis.scroll + 50 < sections[index].offsetTop) {}
+  // Add click event listener to each nav link
+  navLinks.forEach((link) => {
+    link.addEventListener('click', scrollToSection);
+  });
 
-        navLinks.forEach((link) => link.classList.remove('active'));
-        navLinks[index].classList.add('active');
-        console.log("Scrolling to section: ", index);
-    }
+  // Function to update the active nav link
+  function updateActiveNavLink() {
+    let index = sections.length;
+    while (--index && lenis.scroll + 50 < sections[index].offsetTop) {}
+    navLinks.forEach((link) => link.classList.remove('active'));
+    navLinks[index].classList.add('active');
+    console.log("Scrolling to section: ", index);
+  }
 
-    // Update active nav link on scroll
-    lenis.on('scroll', updateActiveNavLink);
+  // Update active nav link on scroll
+  lenis.on('scroll', updateActiveNavLink);
 
-    // Initial call to set the active nav link when the page is first loaded
-    updateActiveNavLink();
+  // Initial call to set the active nav link when the page is first loaded
+  updateActiveNavLink();
 });
